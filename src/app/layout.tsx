@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   description: "Join the HACA Design School community. Register now and get your exclusive Dopamine ID card.",
 };
 
+export function generateViewport() {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  };
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{

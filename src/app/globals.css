@@ -3,6 +3,7 @@
   src: url('/VCNudgeThinTrial.otf') format('opentype');
   font-weight: 100 900;
   font-style: normal;
+  font-display: swap;
 }
 
 *,
@@ -337,8 +338,9 @@ textarea.field-input {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .chip:hover {
@@ -409,8 +411,9 @@ textarea.field-input {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .radio-card:hover {
@@ -485,8 +488,9 @@ textarea.field-input {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-back:hover {
@@ -507,11 +511,13 @@ textarea.field-input {
   font-weight: 700;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   font-family: var(--font-sans);
   flex: 1;
   justify-content: center;
   max-width: 260px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .btn-next:hover {
@@ -544,12 +550,14 @@ textarea.field-input {
   font-weight: 700;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   font-family: var(--font-vc);
   width: 100%;
   justify-content: center;
   text-transform: uppercase;
   font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .btn-submit:hover {
@@ -742,8 +750,10 @@ textarea.field-input {
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .btn-download:hover {
@@ -766,9 +776,11 @@ textarea.field-input {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   font-family: var(--font-sans);
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .btn-join:hover {
@@ -808,6 +820,25 @@ textarea.field-input {
   
   .card-actions {
     flex-direction: column;
+  }
+
+  .dopamine-dynamic {
+    font-size: clamp(10px, 4vw, 16px);
+  }
+
+  .dopamine-dynamic-id {
+    left: 45%;
+    bottom: 3%;
+  }
+
+  .dopamine-dynamic-name {
+    left: 85%;
+    bottom: 3%;
+    font-size: clamp(8px, 3vw, 14px);
+  }
+
+  .dopamine-card {
+    aspect-ratio: 4/2.5;
   }
 }
 

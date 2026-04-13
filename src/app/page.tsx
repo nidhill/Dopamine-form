@@ -203,10 +203,18 @@ export default function Home() {
     if (!cardRef.current) return;
     try {
       const canvas = await html2canvas(cardRef.current, {
-        scale: 3,
+        scale: 2,
         useCORS: true,
         backgroundColor: null,
         logging: false,
+        imageTimeout: 0,
+        onclone: (clonedDoc) => {
+          const clonedCard = clonedDoc.querySelector('.dopamine-card');
+          if (clonedCard) {
+            clonedCard.style.transform = 'none';
+            clonedCard.style.animation = 'none';
+          }
+        }
       });
       const url = canvas.toDataURL('image/png');
       const a = document.createElement('a');
