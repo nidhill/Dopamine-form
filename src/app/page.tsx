@@ -209,7 +209,7 @@ export default function Home() {
         logging: false,
         imageTimeout: 0,
         onclone: (clonedDoc) => {
-          const clonedCard = clonedDoc.querySelector('.dopamine-card');
+          const clonedCard = clonedDoc.querySelector<HTMLDivElement>('.dopamine-card');
           if (clonedCard) {
             clonedCard.style.transform = 'none';
             clonedCard.style.animation = 'none';
