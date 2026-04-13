@@ -90,8 +90,8 @@ function DopamineCard({ uniqueId, name, cardRef }: { uniqueId: string; name: str
       />
 
       {/* DOPAMINE is in the background image */}
-      <span className="dopamine-dynamic dopamine-dynamic-id">// {uniqueId}</span>
-      <span className="dopamine-dynamic dopamine-dynamic-name">// {name.toUpperCase()}</span>
+      <span className="dopamine-dynamic dopamine-dynamic-id">{uniqueId}</span>
+      <span className="dopamine-dynamic dopamine-dynamic-name">{name.toUpperCase()}</span>
     </div>
   );
 }
