@@ -32,7 +32,7 @@ async function appendToGoogleSheet(data: Registration & { unique_id: string }) {
         data.location,
         data.portfolio_link || '',
         data.haca_connection,
-        new Date().toISOString(),
+        new Date().toLocaleString(),
       ],
     ];
 
