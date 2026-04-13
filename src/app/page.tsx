@@ -35,7 +35,7 @@ const WHAT_YOU_DO_OPTIONS = [
 
 const CURRENT_ROLE_OPTIONS = [
   'Student',
-  'Full-time Designer',
+  'WORKING FULL TIME',
   'Freelancer',
   'Part-time',
   'Looking for work',
