@@ -709,22 +709,25 @@ textarea.field-input {
   pointer-events: none;
   z-index: 10;
   font-family: var(--font-vc);
-  font-size: clamp(14px, 3.2vw, 32px);
+  font-size: clamp(12px, 2.8vw, 28px);
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dopamine-dynamic-id {
-  left: 42%;
-  transform: translateX(-50%);
-  bottom: 4%;
+  left: 55%;
+  bottom: 8%;
+  text-align: center;
 }
 
 .dopamine-dynamic-name {
-  left: 80%;
-  transform: translateX(-50%);
-  bottom: 4%;
-  white-space: nowrap;
+  left: 55%;
+  bottom: 3%;
+  text-align: left;
 }
 
 /* ─── Card Actions ─── */
@@ -823,18 +826,18 @@ textarea.field-input {
   }
 
   .dopamine-dynamic {
-    font-size: clamp(10px, 4vw, 16px);
+    font-size: clamp(10px, 3vw, 16px);
+    max-width: 40%;
   }
 
   .dopamine-dynamic-id {
-    left: 45%;
-    bottom: 3%;
+    left: 52%;
+    bottom: 6%;
   }
 
   .dopamine-dynamic-name {
-    left: 85%;
-    bottom: 3%;
-    font-size: clamp(8px, 3vw, 14px);
+    left: 52%;
+    bottom: 1.5%;
   }
 
   .dopamine-card {
