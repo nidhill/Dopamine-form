@@ -249,7 +249,7 @@ export default function Home() {
       <main className="page">
         {/* Header */}
         <header className="header">
-          <Image src="/logo.png" alt="HACA Design School" width={280} height={80} className="logo-img" style={{ objectFit: 'contain' }} />
+          <Image src="/logo.png" alt="HACA Design School" width={400} height={120} className="logo-img" style={{ objectFit: 'contain' }} />
           <span className="header-badge">Dopamine ✦</span>
         </header>
 
@@ -262,7 +262,7 @@ export default function Home() {
                 Keep it<br /><span>DOPE.</span>
               </h1>
               <p className="hero-subtitle">
-                Join an exclusive community of designers. Fill in your details and get your Dopamine ID.
+                Join an exclusive community of creators. Fill in your details and get your Dopamine ID.
               </p>
             </section>
 
