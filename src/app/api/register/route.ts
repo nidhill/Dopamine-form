@@ -34,7 +34,7 @@ async function appendToGoogleSheet(data: Registration & { unique_id: string }) {
         data.location,
         data.portfolio_link || '',
         data.haca_connection,
-        new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }),
       ],
     ];
 
