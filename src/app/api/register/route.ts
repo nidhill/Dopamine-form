@@ -4,8 +4,10 @@ import { supabase, Registration } from '@/lib/supabase';
 async function appendToGoogleSheet(data: Registration & { unique_id: string }) {
   try {
     const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
-    const sheetId = process.env.GOOGLE_SHEET_ID;
+    let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+    if (privateKey) {
+      privateKey = privateKey.replace(/^"|"$/g, '').replace(/\\n/g, '\n');
+    }    const sheetId = process.env.GOOGLE_SHEET_ID;
 
     if (!serviceAccountEmail || !privateKey || !sheetId) {
       console.log('Google Sheets credentials not configured, skipping sheet update');
