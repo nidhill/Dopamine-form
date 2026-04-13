@@ -249,7 +249,7 @@ export default function Home() {
       <main className="page">
         {/* Header */}
         <header className="header">
-          <Image src="/logo.png" alt="HACA Design School" width={120} height={40} className="logo-img" style={{ objectFit: 'contain' }} />
+          <Image src="/logo.png" alt="HACA Design School" width={280} height={80} className="logo-img" style={{ objectFit: 'contain' }} />
           <span className="header-badge">Dopamine ✦</span>
         </header>
 
