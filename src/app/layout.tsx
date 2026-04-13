@@ -4,7 +4,6 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "HACA Design School — Dopamine Registration",
   description: "Join the HACA Design School community. Register now and get your exclusive Dopamine ID card.",
-  manifest: '/site.webmanifest',
 };
 
 export function generateViewport() {

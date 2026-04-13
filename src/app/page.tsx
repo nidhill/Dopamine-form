@@ -262,7 +262,9 @@ export default function Home() {
                 Keep it<br /><span>DOPE.</span>
               </h1>
               <p className="hero-subtitle">
-                Join an exclusive community of creators. Fill in your details and get your Dopamine ID.
+                <span style={{ color: '#ff9800' }}>Join an exclusive community of creators.</span>
+                <br />
+                <span style={{ color: 'var(--green-neon)' }}>Fill in your details and get your Dopamine ID.</span>
               </p>
             </section>
 
