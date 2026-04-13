@@ -826,18 +826,18 @@ textarea.field-input {
   }
 
   .dopamine-dynamic {
-    font-size: clamp(10px, 3vw, 16px);
-    max-width: 40%;
+    font-size: clamp(12px, 4vw, 18px);
+    max-width: 35%;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 
   .dopamine-dynamic-id {
-    left: 52%;
-    bottom: 6%;
+    bottom: 5%;
   }
 
   .dopamine-dynamic-name {
-    left: 52%;
-    bottom: 1.5%;
+    bottom: 1%;
   }
 
   .dopamine-card {
