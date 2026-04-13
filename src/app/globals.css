@@ -828,16 +828,15 @@ textarea.field-input {
   }
 
   .dopamine-dynamic-id {
-    bottom: 5%;
+    left: 42%;
   }
 
   .dopamine-dynamic-name {
-    bottom: 1%;
-    max-width: 85%;
+    left: 80%;
   }
 
   .dopamine-card {
-    aspect-ratio: 4/2.5;
+    aspect-ratio: 16/10;
   }
 }
 
