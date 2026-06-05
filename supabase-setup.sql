@@ -17,13 +17,17 @@ CREATE TABLE IF NOT EXISTS registrations (
 -- Enable Row Level Security
 ALTER TABLE registrations ENABLE ROW LEVEL SECURITY;
 
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Allow public inserts" ON registrations;
+DROP POLICY IF EXISTS "Allow public reads" ON registrations;
+
 -- Allow public inserts (form submissions from anyone)
 CREATE POLICY "Allow public inserts" ON registrations
-  FOR INSERT TO anon WITH CHECK (true);
+  FOR INSERT WITH CHECK (true);
 
 -- Allow public reads (for counting unique IDs)
 CREATE POLICY "Allow public reads" ON registrations
-  FOR SELECT TO anon USING (true);
+  FOR SELECT USING (true);
 
 -- Index for fast counting
 CREATE INDEX IF NOT EXISTS idx_registrations_created_at ON registrations(created_at);

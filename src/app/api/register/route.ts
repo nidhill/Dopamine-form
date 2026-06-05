@@ -1,5 +1,12 @@
 import { NextResponse } from 'next/server';
-import { supabase, Registration } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+import { Registration } from '@/lib/supabase';
+
+// Use service role key to bypass RLS completely
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
+);
 
 async function appendToGoogleSheet(data: Registration & { unique_id: string }) {
   try {
@@ -7,10 +14,11 @@ async function appendToGoogleSheet(data: Registration & { unique_id: string }) {
     let privateKey = process.env.GOOGLE_PRIVATE_KEY;
     if (privateKey) {
       privateKey = privateKey.replace(/^"|"$/g, '').replace(/\\n/g, '\n');
-    }    const sheetId = process.env.GOOGLE_SHEET_ID;
+    }
+    const sheetId = process.env.GOOGLE_SHEET_ID;
 
     if (!serviceAccountEmail || !privateKey || !sheetId) {
-      console.log('Google Sheets credentials not configured, skipping sheet update');
+      console.log('Google Sheets credentials not configured, skipping');
       return;
     }
 
@@ -24,19 +32,17 @@ async function appendToGoogleSheet(data: Registration & { unique_id: string }) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    const values = [
-      [
-        data.unique_id,
-        data.full_name,
-        data.what_you_do.join(', '),
-        data.current_role,
-        data.experience_level,
-        data.location,
-        data.portfolio_link || '',
-        data.haca_connection,
-        `'${new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' })}`
-      ],
-    ];
+    const values = [[
+      data.unique_id,
+      data.full_name,
+      data.what_you_do.join(', '),
+      data.current_role,
+      data.experience_level,
+      data.location,
+      data.portfolio_link || '',
+      data.haca_connection,
+      new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+    ]];
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
@@ -44,8 +50,10 @@ async function appendToGoogleSheet(data: Registration & { unique_id: string }) {
       valueInputOption: 'USER_ENTERED',
       requestBody: { values },
     });
+
+    console.log('✅ Google Sheets updated');
   } catch (err) {
-    console.error('Google Sheets error:', err);
+    console.error('❌ Google Sheets error:', err);
   }
 }
 
@@ -53,18 +61,11 @@ export async function POST(request: Request) {
   try {
     const body: Registration = await request.json();
 
-    // Get the next sequential number
-    const { count } = await supabase
-      .from('registrations')
-      .select('*', { count: 'exact', head: true });
+    const uniqueId = `#DS${String(Date.now()).slice(-6)}`;
 
-    const nextNumber = (count || 0) + 1;
-    const uniqueId = `#DS${String(nextNumber).padStart(4, '0')}`;
+    const payload = { ...body, unique_id: uniqueId };
 
-    const payload = {
-      ...body,
-      unique_id: uniqueId,
-    };
+    console.log('📝 Inserting:', uniqueId, body.full_name);
 
     const { data, error } = await supabase
       .from('registrations')
@@ -72,14 +73,19 @@ export async function POST(request: Request) {
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('❌ Supabase error:', JSON.stringify(error));
+      throw new Error(error.message);
+    }
 
-    // Append to Google Sheets (non-blocking)
+    console.log('✅ Saved to Supabase:', uniqueId);
+
     appendToGoogleSheet(payload).catch(console.error);
 
     return NextResponse.json({ success: true, data, unique_id: uniqueId });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
+    console.error('❌ Registration failed:', message);
     return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }
